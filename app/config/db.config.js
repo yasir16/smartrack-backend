@@ -19,13 +19,15 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
  
-//Models/tables
-//db.customers = require('../model/customer.model.js')(sequelize, Sequelize);
+// io model
 db.io_profile = require('../model/io/io_profile.model.js')(sequelize,Sequelize);
 db.io_latest = require('../model/io/io_latest.model.js')(sequelize,Sequelize);
 
+//io relation
 db.io_profile.hasMany(db.io_latest,{foreignKey: 'id_profile', sourceKey: 'id'});
 db.io_latest.belongsTo(db.io_profile,{foreignKey: 'id_profile', targetKey: 'id'});
+
+//sensor model
 
  
  
