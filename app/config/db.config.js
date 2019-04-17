@@ -27,8 +27,13 @@ db.io_latest = require('../model/io/io_latest.model.js')(sequelize,Sequelize);
 db.io_profile.hasMany(db.io_latest,{foreignKey: 'id_profile', sourceKey: 'id'});
 db.io_latest.belongsTo(db.io_profile,{foreignKey: 'id_profile', targetKey: 'id'});
 
-//sensor model
+// sensor model
+db.sensor_profile = require('../model/sensor/sensor_profile.model.js')(sequelize,Sequelize)
+db.sensor_latest = require('../model/sensor/sensor_latest.model.js')(sequelize,Sequelize)
 
+//sensor model
+db.sensor_profile.hasMany(db.sensor_latest, {foreignKey:'id_profile',sourceKey:'id'});
+db.sensor_latest.belongsTo(db.sensor_profile, {foreignKey:'id_profile',targetKey: 'id'})
  
  
 module.exports = db;
